@@ -134,3 +134,5 @@ Allast properly mention the entity and STO used in application.
 - Image run;s successfully in machine as a container.
 - Every functionality works properly.
 - Can run image on different routes.
+- Hosted my UserManagementApi docker image in dockerhub repositry as public.
+- To pull from docker image from dockerhub use cmd : docker pull sudarshanshukla/usermanagementapi
