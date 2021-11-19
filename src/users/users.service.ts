@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { UserDto } from './dto/user.dto';
 import { User } from './entity/user.entity';
 
-export type user = User;
+//export type user = User;
 
 @Injectable()
 export class UsersService {

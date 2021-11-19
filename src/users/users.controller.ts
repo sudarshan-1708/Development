@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, UseGuard
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiResponseProperty, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Public } from './customDecorator/publicAuth.decorator';
 import { UserDto } from './dto/user.dto';
 import { User } from './entity/user.entity';
 import { UsersService } from './users.service';
@@ -19,7 +20,7 @@ export class UsersController {
      * id: 1,firstName: Sudarshan, lastName:Shukla, emailId:sudarshan@gmail.com, phoneNumber: 9369426294, city:Pratapgarh,state:Uttar Pradesh, country:India,password:changeme
      * }
      */
-    @UseGuards(JwtAuthGuard )
+     @UseGuards(AuthGuard('jwt'))
     @ApiOperation({summary:'Gets all user data present in DataBase'})
     @ApiOkResponse({type:User, isArray: true, description :'Fetch all users present in DataBase'})
     @Get()
@@ -27,6 +28,7 @@ export class UsersController {
     getUsers(): Promise<User[]> {
         return this.userService.getAll();
     }
+
 
     /**
      * @description Route (GET) users/{:id}. Gives the user date with given user Id.
@@ -37,7 +39,7 @@ export class UsersController {
      * id: 1,firstName: Sudarshan, lastName:Shukla, emailId:sudarshan@gmail.com, phoneNumber: 9369426294, city:Pratapgarh,state:Uttar Pradesh, country:India,password:changeme
      * }
      */
-    @UseGuards(JwtAuthGuard )
+    @UseGuards(AuthGuard('jwt'))
     @ApiOperation({summary:'Get User information by their id',parameters:[]})
     @ApiOkResponse({type:User, description:'Get user information respective to their id'})
     @Get(':id')
@@ -57,7 +59,7 @@ export class UsersController {
      * firstName: "Sudarshan", lastName:"Shukla", emailId:"sudarshan@gmail.com", phoneNumber: 9369426294, city:"Pratapgarh",state:"Uttar Pradesh", country:"India",password:"changeme"
      * }
      */
-    @UseGuards(JwtAuthGuard )
+    @UseGuards(AuthGuard('jwt'))
     @ApiCreatedResponse({type : User, description:'Add new user to DataBase with respective DTO and autoIncrementing ID'})
     @ApiOperation({summary:'Add user to dataBase with described DTO as references below in schema section'})
     @Post()
@@ -76,7 +78,7 @@ export class UsersController {
      * id: 1,firstName: Sudarshan, lastName:Shukla, emailId:sudarshan@gmail.com, phoneNumber: 9369426294, city:Pratapgarh,state:Uttar Pradesh, country:India,password:changeme
      * }
      */
-    @UseGuards(JwtAuthGuard )
+     @UseGuards(AuthGuard('jwt'))
     @ApiCreatedResponse({type:User, description:'Update user with respective Id'})
     @ApiOperation({summary:"Update user by providing user's Id and information as per DTO properties. Information will be updated on respected user id."})
     @Put(':id')
@@ -89,7 +91,7 @@ export class UsersController {
      * @description Route: (Delete) users. Removes user from the dataBase with given Id
      * @param id 
      */
-    @UseGuards(JwtAuthGuard )
+     @UseGuards(AuthGuard('jwt'))
     @ApiCreatedResponse({type:User, description:'Remove user with respective Id'})
     @ApiOperation({summary:'Delete user form database with respective user id.'})
     @Delete(':id')

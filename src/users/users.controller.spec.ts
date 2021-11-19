@@ -1,5 +1,4 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import exp from 'constants';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
