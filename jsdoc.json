@@ -1,0 +1,22 @@
+{
+    "plugins" : ["plugins/markdown","jsdoc-plugin-typescript" ],
+    "recurseDepth": 10,
+    "typescript": {
+        "moduleRoot": "./src"
+      },
+    "source": {
+        "include" : ["src"],
+        "includePattern" : ".ts$",
+        "excludePattern" : "(node_modules/|docs)"
+    },
+    "templates" : {
+        "cleverLinks" : true,
+        "monospaceLinks" : true,
+        "default" : {"outputSourceFiles":false}
+    },
+    "opts" :{
+        "recurse": true,
+        "destination" : "./jsdocs"
+    }
+    
+}

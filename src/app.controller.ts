@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Post, Request, Response, UseGuards } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
 import { AuthDto } from './auth/dto/AuthDto.dto';
@@ -21,10 +21,10 @@ export class AppController {
   @ApiTags("Authentication")
   @UseGuards(LocalAuthGuard)
   @ApiOperation({summary:'Create JWT token for authentication by providing: username and password as JSON object.'})
+  @ApiOkResponse({ description:'Returns JWT token for endpoints authorization.'})
   @Post('auth/login')
   async login(@Body() authDto:AuthDto,@Request() req){
     token =  this.authService.login(req.user);
-    console.log(token);
     return token;
   }
 
@@ -33,6 +33,7 @@ export class AppController {
   @ApiTags("Authentication")
   @UseGuards(JwtAuthGuard)
   @ApiOperation({summary:'Get User information on authorised token'})
+  @ApiOkResponse({description:'Gives JWT token information '})
   @Get('profile')
   @ApiBearerAuth()
   getProfile(@Request() req): any{
