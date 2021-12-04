@@ -20,7 +20,7 @@ export class UsersController {
      * id: 1,firstName: Sudarshan, lastName:Shukla, emailId:sudarshan@gmail.com, phoneNumber: 9369426294, city:Pratapgarh,state:Uttar Pradesh, country:India,password:changeme
      * }
      */
-     @UseGuards(AuthGuard('jwt'))
+    @UseGuards(AuthGuard('jwt'))
     @ApiOperation({summary:'Gets all user data present in DataBase'})
     @ApiOkResponse({type:User, isArray: true, description :'Fetch all users present in DataBase'})
     @Get()

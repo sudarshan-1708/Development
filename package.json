@@ -23,7 +23,8 @@
     "migration:generate": "npm run build && npm run typeorm migration:generate -- -n",
     "migration:run": "npm run build && npm run typeorm migration:run",
     "compodoc": "npx compodoc -p tsconfig.doc.json",
-    "jsdoc": "jsdoc -c ./jsdoc.json"
+    "jsdoc": "jsdoc -c ./jsdoc.json",
+    "cypress:open": "npx cypress open"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -60,6 +61,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "cypress": "^9.1.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
